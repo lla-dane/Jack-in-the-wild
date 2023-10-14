@@ -22,12 +22,15 @@ public class PlayerCombat : MonoBehaviour
 
     float attackNextTime = 0f;
 
+    public HealthBar healthbar;
+
 
 
     private void Start()
     {
         isAlive = GetComponent<PlayerMovement>().IsAlive;
         playerHealth = playermaxHealth;
+        healthbar.Set_MaxHealth(playermaxHealth);
     }
     void Update()
     {
@@ -63,6 +66,7 @@ public class PlayerCombat : MonoBehaviour
     public void TakeDamagePlayer(int damage)
     {
         playerHealth -= damage;
+        healthbar.Set_Health(playerHealth);
 
         if (playerHealth <= 0)
         {

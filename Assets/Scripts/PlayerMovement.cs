@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 8f;
     public float jumpSpeed = 28f;
     public GameObject torch;
+    public GameObject barrel;
 
     Vector2 moveInput;
     bool IsSitting;
@@ -129,6 +130,31 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x), 1f);
 
+        }
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition.z = 0f;
+
+        Vector3 direction = (mousePosition - this.transform.position).normalized;
+
+        if (direction.x > 0)
+        {
+            transform.localScale = new Vector2(-1f, 1f);
+            Vector2 gun_scale = this.transform.GetChild(2).transform.GetChild(1).transform.localScale;
+            gun_scale.y = 1f;
+            gun_scale.x = -1f;
+            float z_comp = barrel.transform.rotation.z;
+            barrel.transform.rotation = Quaternion.Euler(0f, 0f, z_comp);
+            this.transform.GetChild(2).transform.localScale = gun_scale;
+        }
+        else
+        {
+            transform.localScale = new Vector2(1f, 1f);
+            Vector2 gun_scale = this.transform.GetChild(2).transform.GetChild(1).transform.localScale;
+            float z_comp = barrel.transform.rotation.z;
+            barrel.transform.rotation = Quaternion.Euler(0f, 180f, z_comp);
+            gun_scale.y = -1f;
+            gun_scale.x = 1f;
+            this.transform.GetChild(2).transform.localScale = gun_scale;
         }
 
     }

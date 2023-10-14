@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Interactables
   layers:
   - Default
   - TransparentFX
@@ -53,8 +55,14 @@ TagManager:
   - name: Platform1
     uniqueID: 1545846639
     locked: 0
+  - name: Bullet
+    uniqueID: 157244103
+    locked: 0
   - name: Player
     uniqueID: 474598493
+    locked: 0
+  - name: Gun
+    uniqueID: 1897629847
     locked: 0
   - name: Platform2
     uniqueID: 2573553715
